@@ -10,5 +10,10 @@
     "*.decorator.ts": "nest-decorator",
     "*.guard.ts": "nest-guard",
     "*.resolver.ts": "nest-resolver"
+  },
+  "editor.formatOnSave": false,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   }
 }
