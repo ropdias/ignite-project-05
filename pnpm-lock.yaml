@@ -78,6 +78,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^1.5.2
         version: 1.5.2(vitest@1.5.2(@types/node@20.12.7)(terser@5.30.3))
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
