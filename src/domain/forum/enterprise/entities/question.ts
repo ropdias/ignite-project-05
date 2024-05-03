@@ -14,7 +14,7 @@ export interface QuestionProps {
   slug: Slug
   attachments: QuestionAttachmentList
   createdAt: Date
-  updatedAt?: Date // it's optional to show when the question is edited
+  updatedAt?: Date | null // it's optional to show when the question is edited
 }
 
 export class Question extends AggregateRoot<QuestionProps> {
