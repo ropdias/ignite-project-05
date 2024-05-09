@@ -30,6 +30,7 @@ import { PrismaStudentsRepository } from './prisma/repositories/prisma-students-
   exports: [
     PrismaService,
     QuestionsRepository,
+    StudentsRepository,
     PrismaQuestionCommentsRepository,
     PrismaQuestionAttachmentsRepository,
     PrismaAnswersRepository,
