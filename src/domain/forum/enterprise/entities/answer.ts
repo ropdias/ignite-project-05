@@ -10,7 +10,7 @@ export interface AnswerProps {
   content: string
   attachments: AnswerAttachmentList
   createdAt: Date
-  updatedAt?: Date // it's optional to show when the answer is edited
+  updatedAt?: Date | null // it's optional to show when the answer is edited
 }
 
 export class Answer extends AggregateRoot<AnswerProps> {
