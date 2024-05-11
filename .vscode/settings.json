@@ -1,16 +1,5 @@
 {
-  "material-icon-theme.files.associations": {
-    "*.module.ts": "nest-module",
-    "*.controller.ts": "nest-controller",
-    "*.service.ts": "nest-service",
-    "*.middleware.ts": "nest-middleware",
-    "*.filter.ts": "nest-filter",
-    "*.pipe.ts": "nest-pipe",
-    "*.gateway.ts": "nest-gateway",
-    "*.decorator.ts": "nest-decorator",
-    "*.guard.ts": "nest-guard",
-    "*.resolver.ts": "nest-resolver"
-  },
+  "material-icon-theme.activeIconPack": "nest",
   "editor.formatOnSave": false,
   "eslint.format.enable": true,
   "editor.codeActionsOnSave": {
