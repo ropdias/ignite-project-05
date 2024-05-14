@@ -3,6 +3,6 @@
   "rules": {
     "no-useless-constructor": "off",
     "no-new": "off",
-    "no-explicit-any": "off",
+    "no-explicit-any": "off"
   }
 }
