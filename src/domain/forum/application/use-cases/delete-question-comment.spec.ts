@@ -3,29 +3,33 @@ import { DeleteQuestionCommentUseCase } from './delete-question-comment'
 import { makeQuestionComment } from 'test/factories/make-question-comment'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
+import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository'
 
-let ineMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
+let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
+let inMemoryStudentsRepository: InMemoryStudentsRepository
 let sut: DeleteQuestionCommentUseCase
 
 describe('Delete Question Comment', () => {
   beforeEach(() => {
-    ineMemoryQuestionCommentsRepository =
-      new InMemoryQuestionCommentsRepository()
+    inMemoryStudentsRepository = new InMemoryStudentsRepository()
+    inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository(
+      inMemoryStudentsRepository,
+    )
 
-    sut = new DeleteQuestionCommentUseCase(ineMemoryQuestionCommentsRepository)
+    sut = new DeleteQuestionCommentUseCase(inMemoryQuestionCommentsRepository)
   })
 
   it('should be able to delete a question comment', async () => {
     const questionComment = makeQuestionComment()
 
-    await ineMemoryQuestionCommentsRepository.create(questionComment)
+    await inMemoryQuestionCommentsRepository.create(questionComment)
 
     await sut.execute({
       questionCommentId: questionComment.id.toString(),
       authorId: questionComment.authorId.toString(),
     })
 
-    expect(ineMemoryQuestionCommentsRepository.items).toHaveLength(0)
+    expect(inMemoryQuestionCommentsRepository.items).toHaveLength(0)
   })
 
   it('should not be able to delete another user question comment', async () => {
@@ -33,7 +37,7 @@ describe('Delete Question Comment', () => {
       authorId: new UniqueEntityID('author-1'),
     })
 
-    await ineMemoryQuestionCommentsRepository.create(questionComment)
+    await inMemoryQuestionCommentsRepository.create(questionComment)
 
     const result = await sut.execute({
       questionCommentId: questionComment.id.toString(),
