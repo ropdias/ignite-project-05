@@ -40,18 +40,17 @@ describe('Fetch question answers (E2E)', () => {
       authorId: user.id,
     })
 
-    await Promise.all([
-      answerFactory.makePrismaAnswer({
-        authorId: user.id,
-        questionId: question.id,
-        content: 'Answer 01',
-      }),
-      answerFactory.makePrismaAnswer({
-        authorId: user.id,
-        questionId: question.id,
-        content: 'Answer 02',
-      }),
-    ])
+    const answer1 = await answerFactory.makePrismaAnswer({
+      authorId: user.id,
+      questionId: question.id,
+      content: 'Answer 01',
+    })
+
+    const answer2 = await answerFactory.makePrismaAnswer({
+      authorId: user.id,
+      questionId: question.id,
+      content: 'Answer 02',
+    })
 
     const questionId = question.id.toString()
 
@@ -63,8 +62,14 @@ describe('Fetch question answers (E2E)', () => {
     expect(response.statusCode).toBe(200)
     expect(response.body).toEqual({
       answers: expect.arrayContaining([
-        expect.objectContaining({ content: 'Answer 01' }),
-        expect.objectContaining({ content: 'Answer 01' }),
+        expect.objectContaining({
+          id: answer1.id.toString(),
+          content: 'Answer 01',
+        }),
+        expect.objectContaining({
+          id: answer2.id.toString(),
+          content: 'Answer 02',
+        }),
       ]),
     })
   })
