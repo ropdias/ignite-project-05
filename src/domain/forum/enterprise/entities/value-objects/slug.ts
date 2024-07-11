@@ -14,7 +14,7 @@ export class Slug {
   /**
    *  Receives a string and normalize it as a unique slug.
    *
-   * Example: "An example title" => "an-example-title-c4a3ed0e-3e7d-45f8-9e2b-957d9fbc462b"
+   * Example: "An example title" => "an-example-title-c4a3ed0e3e7d45f89e2b957d9fbc462b"
    *
    * @param text {string}
    */
