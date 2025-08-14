@@ -1,14 +1,17 @@
+import { ValueObject } from '@/core/entities/value-object'
 import { randomUUID } from 'crypto'
 
-export class Slug {
-  public value: string
+export interface SlugProps {
+  value: string
+}
 
-  private constructor(value: string) {
-    this.value = value
+export class Slug extends ValueObject<SlugProps> {
+  get value() {
+    return this.props.value
   }
 
-  static create(slug: string) {
-    return new Slug(slug)
+  static create(value: string) {
+    return new Slug({ value })
   }
 
   /**
@@ -33,6 +36,6 @@ export class Slug {
 
     const slugWithUUID = `${slugText}-${uuid}`
 
-    return new Slug(slugWithUUID)
+    return new Slug({ value: slugWithUUID })
   }
 }
