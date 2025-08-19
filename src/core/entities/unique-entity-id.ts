@@ -1,21 +1,24 @@
 import { randomUUID } from 'node:crypto'
+import { ValueObject } from './value-object'
 
-export class UniqueEntityID {
-  private value: string
+interface UniqueEntityIDProps {
+  value: string
+}
+
+export class UniqueEntityID extends ValueObject<UniqueEntityIDProps> {
+  constructor(value?: string) {
+    super({ value: value ?? randomUUID() })
+  }
 
   toString() {
-    return this.value
+    return this.props.value
   }
 
   toValue() {
-    return this.value
+    return this.props.value
   }
 
-  constructor(value?: string) {
-    this.value = value ?? randomUUID()
-  }
-
-  equals(id: UniqueEntityID) {
-    return id.toValue() === this.value
+  equals(id: UniqueEntityID): boolean {
+    return id.toValue() === this.props.value
   }
 }
